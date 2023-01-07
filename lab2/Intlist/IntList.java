@@ -5,7 +5,7 @@ import java.util.Formatter;
  * with a large number of additional methods.
  *
  * @author P. N. Hilfinger, with some modifications by Josh Hug and melaniecebula
- *         [Do not modify this file.]
+ * [Do not modify this file.]
  */
 public class IntList {
     /**
@@ -29,7 +29,7 @@ public class IntList {
      * A List with null rest, and first = 0.
      */
     public IntList() {
-    /* NOTE: public IntList () { }  would also work. */
+        /* NOTE: public IntList () { }  would also work. */
         this(0, null);
     }
 
@@ -85,7 +85,7 @@ public class IntList {
             return B;
         }
         IntList p = A;
-        while (p.rest != null){
+        while (p.rest != null) {
             p = p.rest;
         }
         p.rest = B;
@@ -107,34 +107,21 @@ public class IntList {
 
         while (p1 != null) {
             p2.first = p1.first;
-            p2.rest = new IntList();
+            if (p1.rest != null || B != null)
+                p2.rest = new IntList();
             p1 = p1.rest;
             p2 = p2.rest;
         }
         p1 = B;
-        while(p1 != null){
+        while (p1 != null) {
             p2.first = p1.first;
-            if(p1.rest != null)
+            if (p1.rest != null)
                 p2.rest = new IntList();
             p1 = p1.rest;
             p2 = p2.rest;
         }
         return answer;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**
