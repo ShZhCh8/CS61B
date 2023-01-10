@@ -43,8 +43,9 @@ public class ArrayDeque<T> {
             size += 1;
             return;
         }
-        if (start + size == items.length)
+        if (start + size == items.length) {
             resize(items.length * 2); // state of the art approach！ geometric resizing;
+        }
         // usage ratio...... half array size when R < 0.25
         items[start + size] = x;
         size += 1;
@@ -62,30 +63,37 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        if (isEmpty())
+        if (isEmpty()) {
             return null;
+        }
         T temp = items[start];
         items[start] = null; // loitering 垃圾？
-        if (!isEmpty())
+        size -= 1;
+        if (!isEmpty()) {
             start += 1;
-        if (size > ARBITRARYSIZE && (double) size / items.length < RATIOFACTOR)
+        }
+        if (size > ARBITRARYSIZE && (double) size / items.length < RATIOFACTOR) {
             resize(items.length / 2);
+        }
         return temp;
     }
-    public void printDeque(){
-        for (int i = 0; i < start + size; i += 1){
+
+    public void printDeque() {
+        for (int i = 0; i < start + size; i += 1) {
             System.out.print(items[i] + " ");
         }
     }
+
     public T removeLast() {
-        if (isEmpty())
+        if (isEmpty()) {
             return null;
+        }
         T temp = items[start + size - 1];
         items[start + size - 1] = null; // loitering 垃圾？
         size -= 1;
-        if (size > ARBITRARYSIZE && (double) size / items.length < RATIOFACTOR)
+        if (size > ARBITRARYSIZE && (double) size / items.length < RATIOFACTOR) {
             resize(items.length / 2);
+        }
         return temp;
     }
 }
-
