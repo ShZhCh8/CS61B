@@ -30,9 +30,10 @@ public class ArrayDeque<T> {
             return;
         }
         if (start == 0) {
-            resize(size * 2);
+            resize(items.length * 2);
         }
-        items[start - 1] = x;
+        start -= 1;
+        items[start] = x;
         size += 1;
     }
 
@@ -42,15 +43,18 @@ public class ArrayDeque<T> {
             size += 1;
             return;
         }
-        if (start + size - 1 == items.length)
-            resize(size * 2); // state of the art approach！ geometric resizing;
+        if (start + size == items.length)
+            resize(items.length * 2); // state of the art approach！ geometric resizing;
         // usage ratio...... half array size when R < 0.25
         items[start + size] = x;
         size += 1;
     }
 
     public T get(int i) {
-        return items[start + i];
+        if (i < size && i >= 0) {
+            return items[start + i];
+        }
+        return null;
     }
 
     public int size() {
@@ -65,7 +69,7 @@ public class ArrayDeque<T> {
         if (!isEmpty())
             start += 1;
         if (size > ARBITRARYSIZE && (double) size / items.length < RATIOFACTOR)
-            resize(size / 2);
+            resize(items.length / 2);
         return temp;
     }
     public void printDeque(){
@@ -77,10 +81,10 @@ public class ArrayDeque<T> {
         if (isEmpty())
             return null;
         T temp = items[start + size - 1];
-        items[size - 1] = null; // loitering 垃圾？
+        items[start + size - 1] = null; // loitering 垃圾？
         size -= 1;
         if (size > ARBITRARYSIZE && (double) size / items.length < RATIOFACTOR)
-            resize(size / 2);
+            resize(items.length / 2);
         return temp;
     }
 }

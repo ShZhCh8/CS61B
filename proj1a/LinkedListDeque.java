@@ -1,5 +1,5 @@
 public class LinkedListDeque<T> {
-    public class node {
+    private class node {
         T item;
         node prev;
         node next;
@@ -94,13 +94,5 @@ public class LinkedListDeque<T> {
         if (index >= size && size < 0)
             return null;
         return sentinel.next.get(index);
-    }
-
-    public static void main(String[] args){
-        LinkedListDeque<Integer> a = new LinkedListDeque<>();
-        a.addFirst(14);
-        a.addLast(90);
-        int w = a.removeFirst();
-        System.out.print(w);
     }
 }
