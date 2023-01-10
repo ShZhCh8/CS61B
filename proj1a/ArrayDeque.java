@@ -72,7 +72,7 @@ public class ArrayDeque<T> {
         if (!isEmpty()) {
             start += 1;
         }
-        if (size > ARBITRARYSIZE && (double) size / items.length < RATIOFACTOR) {
+        if (items.length > ARBITRARYSIZE && (double) size / items.length < RATIOFACTOR) {
             resize(items.length / 2);
         }
         return temp;
@@ -91,7 +91,7 @@ public class ArrayDeque<T> {
         T temp = items[start + size - 1];
         items[start + size - 1] = null; // loitering 垃圾？
         size -= 1;
-        if (size > ARBITRARYSIZE && (double) size / items.length < RATIOFACTOR) {
+        if (items.length > ARBITRARYSIZE && (double) size / items.length < RATIOFACTOR) {
             resize(items.length / 2);
         }
         return temp;

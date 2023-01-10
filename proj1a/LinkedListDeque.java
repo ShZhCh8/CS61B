@@ -1,10 +1,10 @@
 public class LinkedListDeque<T> {
-    private class node {
+    private class Node {
         T item;
-        node prev;
-        node next;
+        Node prev;
+        Node next;
 
-        private node(T item, node prev, node next) {
+        private Node(T item, Node prev, Node next) {
             this.item = item;
             this.prev = prev;
             prev.next = this;
@@ -12,7 +12,7 @@ public class LinkedListDeque<T> {
             next.prev = this;
         }
 
-        public node() {
+        public Node() {
         }
 
         public T get(int index) {
@@ -23,7 +23,7 @@ public class LinkedListDeque<T> {
         }
     }
 
-    private node sentinel;
+    private Node sentinel;
     private int size;
 
     public int size() {
@@ -31,19 +31,19 @@ public class LinkedListDeque<T> {
     }
 
     public LinkedListDeque() {
-        this.sentinel = new node();
+        this.sentinel = new Node();
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
         size = 0;
     }
 
     public void addFirst(T item) {
-        new node(item, sentinel, sentinel.next);
+        new Node(item, sentinel, sentinel.next);
         size += 1;
     }
 
     public void addLast(T item) {
-        new node(item, sentinel.prev, sentinel);
+        new Node(item, sentinel.prev, sentinel);
         size += 1;
     }
 
@@ -52,7 +52,7 @@ public class LinkedListDeque<T> {
     }
 
     public void printDeque() {
-        node p = this.sentinel.next;
+        Node p = this.sentinel.next;
         while (p != sentinel) {
             System.out.print(p.item + " ");
             p = p.next;
@@ -85,7 +85,7 @@ public class LinkedListDeque<T> {
         if (index >= size && size < 0) {
             return null;
         }
-        node p = sentinel.next;
+        Node p = sentinel.next;
         for (int i = 0; i < index; i += 1) {
             p = p.next;
         }
