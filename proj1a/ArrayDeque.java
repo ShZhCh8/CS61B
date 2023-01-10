@@ -49,18 +49,6 @@ public class ArrayDeque<T> {
         size += 1;
     }
 
-    public T getFirst() {
-        if (isEmpty())
-            return null;
-        return items[start];
-    }
-
-    public T getLast() {
-        if (isEmpty())
-            return null;
-        return items[start + size - 1];
-    }
-
     public T get(int i) {
         return items[start + i];
     }
@@ -72,7 +60,7 @@ public class ArrayDeque<T> {
     public T removeFirst() {
         if (isEmpty())
             return null;
-        T temp = getFirst();
+        T temp = items[start];
         items[start] = null; // loitering 垃圾？
         if (!isEmpty())
             start += 1;
@@ -88,7 +76,7 @@ public class ArrayDeque<T> {
     public T removeLast() {
         if (isEmpty())
             return null;
-        T temp = getLast();
+        T temp = items[start + size - 1];
         items[size - 1] = null; // loitering 垃圾？
         size -= 1;
         if (size > ARBITRARYSIZE && (double) size / items.length < RATIOFACTOR)

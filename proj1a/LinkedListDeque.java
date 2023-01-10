@@ -36,12 +36,6 @@ public class LinkedListDeque<T> {
         size = 0;
     }
 
-    public LinkedListDeque(T item) {
-        this.sentinel = new node();
-        sentinel.next = new node(item, sentinel, sentinel);
-        size = 1;
-    }
-
     public void addFirst(T item) {
         new node(item, sentinel, sentinel.next);
         size += 1;
@@ -68,6 +62,7 @@ public class LinkedListDeque<T> {
         if (sentinel.next != sentinel) {
             T temp = sentinel.next.item;
             sentinel.next = sentinel.next.next;
+            sentinel.next.prev = sentinel;
             size -= 1;
             return temp;
         }
@@ -78,6 +73,7 @@ public class LinkedListDeque<T> {
         if (sentinel.prev != sentinel) {
             T temp = sentinel.prev.item;
             sentinel.prev = sentinel.prev.prev;
+            sentinel.prev.next = sentinel;
             size -= 1;
             return temp;
         }
@@ -98,5 +94,13 @@ public class LinkedListDeque<T> {
         if (index >= size && size < 0)
             return null;
         return sentinel.next.get(index);
+    }
+
+    public static void main(String[] args){
+        LinkedListDeque<Integer> a = new LinkedListDeque<>();
+        a.addFirst(14);
+        a.addLast(90);
+        int w = a.removeFirst();
+        System.out.print(w);
     }
 }
